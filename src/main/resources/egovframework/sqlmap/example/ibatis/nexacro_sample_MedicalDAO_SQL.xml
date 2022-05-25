@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Medical">
+
+	<!--──────────────────────────────ApprovalList───────────────────────────────-->
+	<select id="nexacroMedical.selectListMap" parameterClass="Map" 
+		    resultClass="java.util.HashMap" remapResults="true">
+		SELECT modelnm, copnm, dec_name, regDate, accyn, accno, divcd
+		FROM tb_medicalinfo
+		WHERE 1=1
+		<dynamic>
+			<isNotNull property="searchstatus">
+				<isNotEqual prepend="AND" property="searchstatus" compareValue="9">
+					accyn = #searchstatus#
+				</isNotEqual>
+			</isNotNull>			
+			<isNotNull property="searchword">
+				<isEqual prepend="AND" property="searchcateid" compareValue="9">
+					modelnm  LIKE concat('%', #searchword#, '%') OR
+					copnm LIKE concat('%', #searchword#, '%') OR
+					dec_name LIKE concat('%', #searchword#, '%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchcateid" compareValue="0">
+					modelnm LIKE concat('%', #searchword#, '%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchcateid" compareValue="1">
+					copnm LIKE concat('%', #searchword#, '%')
+				</isEqual>
+				<isEqual prepend="AND" property="searchcateid" compareValue="2">-
+					dec_name LIKE concat('%', #searchword#, '%')
+				</isEqual>
+			</isNotNull>			
+		</dynamic>
+	</select>
+	
+	<update id="nexacroMedical.updateAccynMap" parameterClass="Map">
+		UPDATE tb_medicalinfo
+		SET accyn = #accyn#
+		WHERE accno = #accno#
+	</update>
+	
+	<!--────────────────────────────InsertCommonMedical──────────────────────────-->
+	<insert id="nexacroMedical.insertCommonMedical" parameterClass="Map">
+		<selectKey keyProperty="accno" resultClass="int">
+			SELECT ifnull(max(accno),0) + 1
+			FROM tb_medicalinfo
+		</selectKey>	
+		INSERT INTO tb_medicalinfo(accas, accno, accyn, copaddress, coplicense, copnm, copphone, dec_address, dec_birth, dec_name, divcd, divdtl, divno, etc, hints, manager,
+									managerphone, manufacturer, meditype, modelnm, otheryn, property, regDate, regID, reporNumber, reporttype, shape, type, upID, usemethod, usepurpose)
+		VALUES (#accas#, #accno#, #accyn#, #copaddress#, #coplicense#, #copnm#, #copphone#, #dec_address#, #dec_birth#, #dec_name#, #divcd#, #divdtl#, #divno#, #etc#, #hints#, #manager#,
+				#managerphone#, #manufacturer#, #meditype#, #modelnm#, #otheryn#, #property#, #regDate#, #regID#, #reporNumber#, #reporttype#, #shape#, #type#, #upID#, #usemethod#, #usepurpose#)
+	</insert>	
+	<!-- MAX와 SEQUENCE
+	ⓐ MAX : MAX(seomthing) + 1 할 경우 희박한 확률로 여러 브라우저에서 동시 클릭(밀리세컨드)되어 insert될 경우 한 개는 실패, 한 개는 성공
+	 · 동시 다발적으로 작업되지 않을 경우 MAX를 사용 ex) 자유게시판 등
+	 · ifnull(max(accno), 0) + 1 : null이 들어올 경우 0으로 세팅하고 아닐 경우 MAX + 1의 값
+	ⓑ SEQUENCE : someting_seq.nextval 할 경우 한 개는 insert, 다른 한 개는 웨이팅(다음 번 번호를 부여 받음)
+	 · 동시 다발적으로 작업되는 경우 시퀀스를 사용 ex) BTS concert ticketing
+	ⓒ SEQUENCE를 지양하는 이유 : 개발서버에서 개발 후 운영서버에 올릴 때, CREATE SEQUENCE 문을 대개 까먹고 안 하는 경우가 종종 발생
+	   따라서, 사용을 지양하며 MAX같은 경우 별도의 시퀀스 생성이 없기에 query문만 작성하면 됨
+	ⓓ COUNT(accno)+1 할 경우 여러명이 팝업 창을 오픈하여 등록하게 될 경우 에러 발생   
+	 -->
+	 
+	 <!--────────────────────────────getAccnoInfo─────────────────────────────────-->
+	 <select id="nexacroMedical.getAccnoInfo" parameterClass="String" resultClass="java.util.HashMap" remapResults="true">
+	 	SELECT accas, accno, accyn, copaddress, coplicense, copnm, copphone, dec_address, dec_birth, dec_name, divcd, divdtl, divno, etc, hints, manager, 
+	 		   managerphone, manufacturer, meditype, modelnm, otheryn, property, regDate, regID, reporNumber, reporttype, shape, type, upID, usemethod, usepurpose
+	 	FROM tb_medicalinfo
+	 	WHERE accno = #accno#
+	 </select>
+	
+	<!--────────────────────────────getUinfoUpdate───────────────────────────────-->
+	<update id="nexacroMedical.getUinfoUpdate" parameterClass="Map">
+		UPDATE tb_medicalinfo
+		SET accas = #accas#, accno = #accno#, accyn = #accyn#, copaddress = #copaddress#, coplicense = #coplicense#, copnm = #copnm#, copphone = #copphone#,
+		    dec_address = #dec_address#, dec_birth = #dec_birth#, dec_name = #dec_name#, divcd = #divcd#, divdtl = #divdtl#, divno = #divno#, etc = #etc#,
+		    hints = #hints#, manager = #manager#, managerphone = #managerphone#, manufacturer = #manufacturer#, meditype = #meditype#, modelnm = #modelnm#,
+		    otheryn = #otheryn#, property = #property#, regDate = #regDate#, regID = #regID#, reporNumber = #reporNumber#, reporttype = #reporttype#,
+		    shape = #shape#, type = #type#, upID = #upID#, usemethod = #usemethod#, usepurpose = #usepurpose#		
+		WHERE accno = #accno#
+	</update>
+	
+</sqlMap>

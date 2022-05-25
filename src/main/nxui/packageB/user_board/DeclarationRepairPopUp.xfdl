@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="DeclarationRepairPopUp" width="460" height="400" titletext="New Form" onload="DeclarationRepairPopUp_onload">
+    <Layouts>
+      <Layout height="400" mobileorientation="landscape" width="460">
+        <Div id="div01" taborder="0" left="20" top="60" width="420" height="150" border="1px solid">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="업 소 명" left="10" top="10" width="120" height="20"/>
+              <Edit id="edt00" taborder="1" left="200" top="10" width="200" height="20" enable="false"/>
+              <Static id="sta01" taborder="2" text="소 재 지" left="11" top="36" width="120" height="20"/>
+              <Edit id="edt01" taborder="3" left="201" top="36" width="200" height="20" enable="false"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div02" taborder="1" left="20" top="225" width="420" height="150" border="1px solid">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="의료기기법 제14조 및 동법시행규칙&#13;&#10;제22조 제2항의 규정에 따라 위와 같이&#13;&#10;의료기기 수리업 신고를 수리합니다." left="84" top="24" width="250" height="50" onclick="div02_sta00_onclick" font="bold 12px/normal &quot;Gulim&quot;" textAlign="center"/>
+              <Static id="sta01" taborder="1" text="서 울 특 별 시 장" left="259" top="104" width="120" height="30" textAlign="center" font="bold 14px/normal &quot;Gulim&quot;"/>
+              <Static id="sta02" taborder="2" left="149" top="79" width="120" height="20" font="italic 10pt &quot;Arial&quot;" textAlign="center" text="" enable="false"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="sta01" taborder="2" text="대 표 자" left="32" top="124" width="120" height="20"/>
+        <Edit id="edt01" taborder="3" left="222" top="124" width="200" height="20" enable="false"/>
+        <Static id="sta00" taborder="4" text="생년월일" left="32" top="152" width="120" height="20"/>
+        <Edit id="edt00" taborder="5" left="222" top="152" width="200" height="20" enable="false"/>
+        <Static id="sta02" taborder="6" text="수리대상 의료기기 유형" left="32" top="178" width="148" height="20"/>
+        <Edit id="edt02" taborder="7" left="222" top="178" width="200" height="20" enable="false"/>
+        <Static id="sta03" taborder="8" text="의료기기 수리업 신고증" left="142" top="7" width="160" height="40" font="bold 14px/normal &quot;Gulim&quot;"/>
+        <Button id="btnUpdate" taborder="9" text="수정" left="321" top="27" width="55" height="23"/>
+        <Button id="btnClose" taborder="10" text="닫기" left="385" top="27" width="55" height="23" onclick="btn_close_onclick"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="div01.form.edt00" propid="value" datasetid="ds_manufacture" columnid="copnm"/>
+      <BindItem id="item1" compid="div01.form.edt01" propid="value" datasetid="ds_manufacture" columnid="copaddress"/>
+      <BindItem id="item2" compid="div02.form.sta02" propid="height" datasetid="ds_manufacture" columnid="regDate"/>
+      <BindItem id="item3" compid="edt01" propid="value" datasetid="ds_manufacture" columnid="dec_name"/>
+      <BindItem id="item4" compid="edt00" propid="value" datasetid="ds_manufacture" columnid="dec_birth"/>
+      <BindItem id="item5" compid="edt02" propid="value" datasetid="ds_manufacture" columnid="meditype"/>
+    </Bind>
+    <Objects>
+      <Dataset id="ds_manufacture">
+        <ColumnInfo>
+          <Column id="accas" type="STRING" size="256"/>
+          <Column id="accno" type="STRING" size="256"/>
+          <Column id="accyn" type="STRING" size="256"/>
+          <Column id="copaddress" type="STRING" size="256"/>
+          <Column id="coplicense" type="STRING" size="256"/>
+          <Column id="copnm" type="STRING" size="256"/>
+          <Column id="copphone" type="STRING" size="256"/>
+          <Column id="dec_address" type="STRING" size="256"/>
+          <Column id="dec_birth" type="STRING" size="256"/>
+          <Column id="dec_name" type="STRING" size="256"/>
+          <Column id="divcd" type="STRING" size="256"/>
+          <Column id="divdtl" type="STRING" size="256"/>
+          <Column id="divno" type="STRING" size="256"/>
+          <Column id="etc" type="STRING" size="256"/>
+          <Column id="hints" type="STRING" size="256"/>
+          <Column id="manager" type="STRING" size="256"/>
+          <Column id="managerphone" type="STRING" size="256"/>
+          <Column id="manufacturer" type="STRING" size="256"/>
+          <Column id="meditype" type="STRING" size="256"/>
+          <Column id="modelnm" type="STRING" size="256"/>
+          <Column id="otheryn" type="STRING" size="256"/>
+          <Column id="property" type="STRING" size="256"/>
+          <Column id="regDate" type="STRING" size="256"/>
+          <Column id="regID" type="STRING" size="256"/>
+          <Column id="reporNumber" type="STRING" size="256"/>
+          <Column id="reporttype" type="STRING" size="256"/>
+          <Column id="shape" type="STRING" size="256"/>
+          <Column id="type" type="STRING" size="256"/>
+          <Column id="upDate" type="STRING" size="256"/>
+          <Column id="upID" type="STRING" size="256"/>
+          <Column id="usemethod" type="STRING" size="256"/>
+          <Column id="usepurpose" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.DeclarationRepairPopUp_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var accno = this.parent.accno;
+	this.ds_manufacture.setColumn(0, "accno", accno);
+	this.getAccnoInfo(accno);
+};
+
+this.getAccnoInfo = function (accno)
+{
+	//alert(accno);
+	var strSvcId    = "getInfoRepaire";
+	var strSvcUrl   = "getAccnoInfo.do";
+	var inData      = "";
+	var outData     = "ds_manufacture=ds_manufacture";
+	var strArg      = "accno="+accno;
+	var callBackFnc = "fnCallback";
+	
+	var isAsync   = true;
+	var nDataType = 0;
+	
+	this.gfnTransaction(strSvcId,
+						strSvcUrl,
+						inData,
+						outData,
+						strArg,
+						callBackFnc,
+						nDataType);
+};
+
+//callback
+this.fnCallback = function (svcID, errorCode, errorMsg, e:nexacro.ItemChangeEventInfo)
+{
+	if (errorCode < 0)
+	{
+		alert(errorMsg);
+	}
+	else if (svcID == "getInfoRepaire")
+	{
+		trace(svcID);
+	}
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+   this.close();
+};]]></Script>
+  </Form>
+</FDL>

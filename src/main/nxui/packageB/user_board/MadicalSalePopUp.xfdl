@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="MadicalSalePopUp" width="930" height="630" titletext="New Form" onload="MadicalSalePopUp_onload">
+    <Layouts>
+      <Layout height="630" mobileorientation="landscape" width="930">
+        <Div id="div00" taborder="0" left="12" top="45" width="900" height="160" border="1px solid">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="신고인(대표자)" left="30" top="20" width="110" height="20" font="bold 14px/normal &quot;Gulim&quot;"/>
+              <Static id="sta01" taborder="1" text="성명" left="30" top="65" width="50" height="20" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <Edit id="edt00" taborder="2" left="90" top="60" width="135" height="30"/>
+              <Static id="sta02" taborder="3" text="주소" left="30" top="109" width="50" height="20" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <Edit id="edt01" taborder="4" left="90" top="104" width="779" height="30"/>
+              <Static id="sta03" taborder="5" text="생년월일" left="375" top="65" width="50" height="20" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <Calendar id="cal00" taborder="6" left="459" top="60" width="150" height="30"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div01" taborder="1" left="12" top="210" width="900" height="160" border="1px solid">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="제조(소입)업소" left="30" top="20" width="110" height="20" font="bold 14px/normal &quot;Gulim&quot;" onclick="div01_sta00_onclick"/>
+              <Static id="sta01" taborder="1" text="상호명" left="30" top="65" width="50" height="20" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <Edit id="edt00" taborder="2" left="90" top="60" width="135" height="30"/>
+              <Static id="sta02" taborder="3" text="소재지" left="30" top="109" width="50" height="20" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <Edit id="edt01" taborder="4" left="90" top="104" width="779" height="30"/>
+              <Static id="sta03" taborder="5" text="입허가번호" left="375" top="65" width="64" height="20" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <Edit id="edt02" taborder="6" left="459" top="60" width="150" height="30"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="sta00" taborder="2" text="접수번호" left="43" top="3" width="167" height="40" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <MaskEdit id="edtAccno" taborder="3" left="107" top="8" width="130" height="30" enable="false"/>
+        <Static id="sta01" taborder="4" text="접수일자" left="388" top="3" width="167" height="40" font="bold 12px/normal &quot;Gulim&quot;" onclick="sta01_onclick"/>
+        <Calendar id="todayCal" taborder="5" left="472" top="8" width="130" height="30" enable="false"/>
+        <Button id="btnSubmit" taborder="6" text="등록" left="767" top="8" width="130" height="30" onclick="btnSubmit_onclick"/>
+        <Div id="div04" taborder="7" left="12" top="487" width="900" height="127" border="1px solid">
+          <Layouts>
+            <Layout>
+              <Static id="sta02" taborder="0" text="신고인" left="30" top="14" width="379" height="30" font="bold 12px/normal &quot;Gulim&quot;" onclick="div03_sta02_onclick"/>
+              <Edit id="edt01" taborder="1" left="419" top="14" width="450" height="30" enable="false"/>
+              <Static id="sta00" taborder="2" text="담당자 성명" left="30" top="49" width="379" height="30" font="bold 12px/normal &quot;Gulim&quot;" onclick="div03_sta02_onclick"/>
+              <Edit id="edt00" taborder="3" left="419" top="49" width="450" height="30"/>
+              <Static id="sta01" taborder="4" text="담당자 전화번호" left="30" top="84" width="379" height="30" font="bold 12px/normal &quot;Gulim&quot;" onclick="div03_sta02_onclick"/>
+              <Edit id="edt02" taborder="5" left="419" top="84" width="450" height="30"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div02" taborder="8" left="12" top="376" width="900" height="104" border="1px solid" text="">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="신고의 구분" left="30" top="20" width="110" height="20" font="bold 14px/normal &quot;Gulim&quot;" onclick="div01_sta00_onclick"/>
+              <Radio id="rdo00" taborder="1" left="94" top="50" width="775" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">1</Col>
+                      <Col id="datacolumn">판매업</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">2</Col>
+                      <Col id="datacolumn">임대업</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Radio>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="div00.form.edt00" propid="value" datasetid="ds_manufacture" columnid="dec_name"/>
+      <BindItem id="item1" compid="div00.form.cal00" propid="value" datasetid="ds_manufacture" columnid="dec_birth"/>
+      <BindItem id="item2" compid="div00.form.edt01" propid="value" datasetid="ds_manufacture" columnid="dec_address"/>
+      <BindItem id="item3" compid="div01.form.edt00" propid="value" datasetid="ds_manufacture" columnid="copnm"/>
+      <BindItem id="item4" compid="div01.form.edt02" propid="value" datasetid="ds_manufacture" columnid="coplicense"/>
+      <BindItem id="item5" compid="div01.form.edt01" propid="value" datasetid="ds_manufacture" columnid="copaddress"/>
+      <BindItem id="item6" compid="edtAccno" propid="value" datasetid="ds_manufacture" columnid="accno"/>
+      <BindItem id="item7" compid="todayCal" propid="value" datasetid="ds_manufacture" columnid="regDate"/>
+      <BindItem id="item8" compid="div04.form.edt00" propid="value" datasetid="ds_manufacture" columnid="manager"/>
+      <BindItem id="item9" compid="div04.form.edt02" propid="value" datasetid="ds_manufacture" columnid="managerphone"/>
+      <BindItem id="item10" compid="div02.form.rdo00" propid="value" datasetid="ds_manufacture" columnid="accas"/>
+    </Bind>
+    <Objects>
+      <Dataset id="ds_manufacture">
+        <ColumnInfo>
+          <Column id="accas" type="STRING" size="256"/>
+          <Column id="accno" type="STRING" size="256"/>
+          <Column id="accyn" type="STRING" size="256"/>
+          <Column id="copaddress" type="STRING" size="256"/>
+          <Column id="coplicense" type="STRING" size="256"/>
+          <Column id="copnm" type="STRING" size="256"/>
+          <Column id="copphone" type="STRING" size="256"/>
+          <Column id="dec_address" type="STRING" size="256"/>
+          <Column id="dec_birth" type="STRING" size="256"/>
+          <Column id="dec_name" type="STRING" size="256"/>
+          <Column id="divcd" type="STRING" size="256"/>
+          <Column id="divdtl" type="STRING" size="256"/>
+          <Column id="divno" type="STRING" size="256"/>
+          <Column id="etc" type="STRING" size="256"/>
+          <Column id="hints" type="STRING" size="256"/>
+          <Column id="manager" type="STRING" size="256"/>
+          <Column id="managerphone" type="STRING" size="256"/>
+          <Column id="manufacturer" type="STRING" size="256"/>
+          <Column id="meditype" type="STRING" size="256"/>
+          <Column id="modelnm" type="STRING" size="256"/>
+          <Column id="otheryn" type="STRING" size="256"/>
+          <Column id="property" type="STRING" size="256"/>
+          <Column id="regDate" type="STRING" size="256"/>
+          <Column id="regID" type="STRING" size="256"/>
+          <Column id="reporNumber" type="STRING" size="256"/>
+          <Column id="reporttype" type="STRING" size="256"/>
+          <Column id="shape" type="STRING" size="256"/>
+          <Column id="type" type="STRING" size="256"/>
+          <Column id="upDate" type="STRING" size="256"/>
+          <Column id="upID" type="STRING" size="256"/>
+          <Column id="usemethod" type="STRING" size="256"/>
+          <Column id="usepurpose" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.MadicalSalePopUp_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.todayCal.set_value(this.fn_today());
+};
+
+//Today
+this.fn_today = function()
+{
+	var objDate = new Date();
+	var sToday  = objDate.getFullYear().toString();
+	    sToday += (objDate.getMonth()+1).toString().padLeft(2, "0")
+	    sToday += objDate.getDate().toString().padLeft(2, "0"); 
+
+	return sToday;
+}
+
+//btn event
+this.btnSubmit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	this.insertSale();
+};
+
+//insert
+this.insertSale = function ()
+{
+	trace(this.ds_manufacture.saveXML());
+	
+	var strSvcId    = "insertSale";
+	var strSvcUrl   = "insertCommonMedical.do";
+	var inData      = "ds_manufacture=ds_manufacture";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	
+	var isAsync   = true;
+	var nDataType = 0;
+	
+	this.gfnTransaction(strSvcId,
+						strSvcUrl,
+						inData,
+						outData,
+						strArg,
+						callBackFnc,
+						nDataType);
+};
+
+//callBack
+this.fnCallback = function (svcID, errorCode, errorMsg, e:nexacro.ItemChangeEventInfo)
+{
+	if (errorCode < 0)
+	{
+		alert(errorMsg);
+	}else if (svcID == "insertSale")
+	{
+		alert("등록이 완료되었습니다.");
+		this.close();
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.0">
+  <Form id="DeclarationSalePopUp" width="640" height="460" titletext="New Form" onload="DeclarationSalePopUp_onload">
+    <Layouts>
+      <Layout height="460" mobileorientation="landscape" width="640">
+        <Static id="sta03" taborder="0" text="의료기기 판매업 허가증" left="220" top="0" width="200" height="40" font="bold 14px/normal &quot;Gulim&quot;" textAlign="center"/>
+        <Div id="div01" taborder="1" left="6" top="40" width="624" height="36" border="1px solid">
+          <Layouts>
+            <Layout>
+              <Static id="sta01" taborder="0" text="입허가번호" left="8" top="5" width="100" height="25" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <Static id="sta02" taborder="1" text="접수번호" left="285" top="5" width="100" height="25" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <MaskEdit id="msk_accno" taborder="2" left="113" top="9" width="150" height="20" enable="false" type="number"/>
+              <MaskEdit id="msk_accno00" taborder="3" left="360" top="9" width="150" height="20" enable="false" type="number"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div03" taborder="2" left="5" top="81" width="625" height="209" border="1px solid">
+          <Layouts>
+            <Layout>
+              <Static id="sta03" taborder="0" text="제품명" left="7" top="4" width="100" height="25" font="bold 12px/normal &quot;Gulim&quot;"/>
+              <Static id="sta04" taborder="1" text="형상 및 구조" left="7" top="29" width="100" height="25" font="bold 12px/normal &quot;Gulim&quot;" onclick="div02_sta04_onclick"/>
+              <Static id="sta02" taborder="2" text="성능" left="7" top="57" width="100" height="24" font="bold 12px/normal &quot;Gulim&quot;" onclick="div02_sta04_onclick"/>
+              <Static id="sta05" taborder="3" text="사용 목적" left="7" top="87" width="100" height="23" font="bold 12px/normal &quot;Gulim&quot;" onclick="div02_sta04_onclick"/>
+              <Static id="sta07" taborder="4" text="사용 방법" left="7" top="117" width="100" height="22" font="bold 12px/normal &quot;Gulim&quot;" onclick="div02_sta04_onclick"/>
+              <Static id="sta08" taborder="5" text="사용 시 주의사항" left="7" top="147" width="100" height="21" font="bold 12px/normal &quot;Gulim&quot;" onclick="div02_sta04_onclick"/>
+              <Static id="sta10" taborder="6" text="비고" left="7" top="178" width="100" height="21" font="bold 12px/normal &quot;Gulim&quot;" onclick="div02_sta04_onclick"/>
+              <Edit id="edt_div" taborder="7" left="114" top="6" width="235" height="20" enable="false"/>
+              <Edit id="edt_modelnm" taborder="8" left="114" top="31" width="235" height="20" enable="false"/>
+              <Edit id="edt_property" taborder="9" left="114" top="59" width="235" height="20" enable="false"/>
+              <Edit id="edt_purpose" taborder="10" left="114" top="88" width="235" height="20" enable="false"/>
+              <Edit id="edt_usemethod" taborder="11" left="114" top="118" width="235" height="20" enable="false"/>
+              <Edit id="edt_hints" taborder="12" left="114" top="147" width="235" height="20" enable="false"/>
+              <Edit id="edt_etc" taborder="13" left="114" top="177" width="235" height="20" enable="false"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div00" taborder="3" left="5" top="299" width="625" height="150" border="1px solid">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="의료기기법 제 5조 및 같은 법 시행규칙 제 5조 제2항에 따라 위와 같이 허가" left="0" top="0" width="623" height="80" font="bold 12px/normal &quot;Gulim&quot;" textAlign="center"/>
+              <Static id="sta02" taborder="1" left="224" top="80" width="120" height="20" font="italic 10pt &quot;Arial&quot;" textAlign="center" enable="false"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="sta01" taborder="4" text="식품의약품안전청장(인)" left="365" top="405" width="245" height="30" textAlign="center" font="bold 14px/normal &quot;Gulim&quot;"/>
+        <Button id="btnUpdate" taborder="5" text="수정" left="510" top="10" width="55" height="23"/>
+        <Button id="btnClose" taborder="6" text="닫기" left="574" top="10" width="55" height="23" onclick="btn00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="div01.form.msk_accno" propid="value" datasetid="ds_manufacture" columnid="coplicense"/>
+      <BindItem id="item1" compid="div01.form.msk_accno00" propid="value" datasetid="ds_manufacture" columnid="accno"/>
+      <BindItem id="item2" compid="div03.form.edt_div" propid="value" datasetid="ds_manufacture" columnid="modelnm"/>
+      <BindItem id="item3" compid="div03.form.edt_modelnm" propid="value" datasetid="ds_manufacture" columnid="shape"/>
+      <BindItem id="item6" compid="div03.form.edt_property" propid="value" datasetid="ds_manufacture" columnid="property"/>
+      <BindItem id="item7" compid="div03.form.edt_purpose" propid="value" datasetid="ds_manufacture" columnid="usepurpose"/>
+      <BindItem id="item8" compid="div03.form.edt_usemethod" propid="value" datasetid="ds_manufacture" columnid="usemethod"/>
+      <BindItem id="item9" compid="div03.form.edt_hints" propid="value" datasetid="ds_manufacture" columnid="hints"/>
+      <BindItem id="item11" compid="div03.form.edt_etc" propid="value" datasetid="ds_manufacture" columnid="etc"/>
+      <BindItem id="item10" compid="div00.form.sta02" propid="height" datasetid="ds_manufacture" columnid="regDate"/>
+    </Bind>
+    <Objects>
+      <Dataset id="ds_manufacture">
+        <ColumnInfo>
+          <Column id="accas" type="STRING" size="256"/>
+          <Column id="accno" type="STRING" size="256"/>
+          <Column id="accyn" type="STRING" size="256"/>
+          <Column id="copaddress" type="STRING" size="256"/>
+          <Column id="coplicense" type="STRING" size="256"/>
+          <Column id="copnm" type="STRING" size="256"/>
+          <Column id="copphone" type="STRING" size="256"/>
+          <Column id="dec_address" type="STRING" size="256"/>
+          <Column id="dec_birth" type="STRING" size="256"/>
+          <Column id="dec_name" type="STRING" size="256"/>
+          <Column id="divcd" type="STRING" size="256"/>
+          <Column id="divdtl" type="STRING" size="256"/>
+          <Column id="divno" type="STRING" size="256"/>
+          <Column id="etc" type="STRING" size="256"/>
+          <Column id="hints" type="STRING" size="256"/>
+          <Column id="manager" type="STRING" size="256"/>
+          <Column id="managerphone" type="STRING" size="256"/>
+          <Column id="manufacturer" type="STRING" size="256"/>
+          <Column id="meditype" type="STRING" size="256"/>
+          <Column id="modelnm" type="STRING" size="256"/>
+          <Column id="otheryn" type="STRING" size="256"/>
+          <Column id="property" type="STRING" size="256"/>
+          <Column id="regDate" type="STRING" size="256"/>
+          <Column id="regID" type="STRING" size="256"/>
+          <Column id="reporNumber" type="STRING" size="256"/>
+          <Column id="reporttype" type="STRING" size="256"/>
+          <Column id="shape" type="STRING" size="256"/>
+          <Column id="type" type="STRING" size="256"/>
+          <Column id="upDate" type="STRING" size="256"/>
+          <Column id="upID" type="STRING" size="256"/>
+          <Column id="usemethod" type="STRING" size="256"/>
+          <Column id="usepurpose" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.DeclarationSalePopUp_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var accno = this.parent.accno;
+	this.ds_manufacture.setColumn(0, "accno", accno);
+	this.getAccnoInfo(accno);
+};
+
+this.getAccnoInfo = function (accno)
+{
+	//alert(accno);
+	var strSvcId    = "getInfoSale";
+	var strSvcUrl   = "getAccnoInfo.do";
+	var inData      = "";
+	var outData     = "ds_manufacture=ds_manufacture";
+	var strArg      = "accno="+accno;
+	var callBackFnc = "fnCallback";
+	
+	var isAsync   = true;
+	var nDataType = 0;
+	
+	this.gfnTransaction(strSvcId,
+						strSvcUrl,
+						inData,
+						outData,
+						strArg,
+						callBackFnc,
+						nDataType);
+};
+
+//callback
+this.fnCallback = function (svcID, errorCode, errorMsg, e:nexacro.ItemChangeEventInfo)
+{
+	if (errorCode < 0)
+	{
+		alert(errorMsg);
+	}
+	else if (svcID == "getInfoSale")
+	{
+		trace(svcID);
+	}
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+   this.close();
+};]]></Script>
+  </Form>
+</FDL>
